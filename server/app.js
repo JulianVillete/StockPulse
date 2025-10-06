@@ -33,15 +33,28 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // Routes
+console.log('Loading routes...');
 const stockRoutes = require('./routes/stocks');
 const watchlistRoutes = require('./routes/watchlist');
 
+console.log('Setting up route middleware...');
 app.use('/api/stocks', stockRoutes);
 app.use('/api/watchlist', watchlistRoutes);
+console.log('Routes configured successfully');
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'StockPulse API is running' });
+});
+
+// Test endpoint to verify routes
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'API routes are working',
+    timestamp: new Date().toISOString(),
+    routes: ['/api/stocks', '/api/watchlist', '/api/health']
+  });
 });
 
 // Error handling middleware
