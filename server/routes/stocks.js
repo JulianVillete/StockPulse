@@ -5,6 +5,16 @@ const router = express.Router();
 const ALPHA_VANTAGE_API_KEY = 'F83JJ8M93FB6GF22';
 const BASE_URL = 'https://www.alphavantage.co/query';
 
+// Test route to verify stocks router is working
+router.get('/test', (req, res) => {
+  console.log('🧪 Stocks router test endpoint hit');
+  res.json({ 
+    status: 'OK', 
+    message: 'Stocks router is working',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Helper function to make Alpha Vantage API calls
 const fetchFromAlphaVantage = async (params) => {
   try {
@@ -23,6 +33,7 @@ const fetchFromAlphaVantage = async (params) => {
 
 // Get real-time stock quote
 router.get('/quote/:symbol', async (req, res) => {
+  console.log(`📈 Stock quote request for: ${req.params.symbol}`);
   try {
     const { symbol } = req.params;
     
