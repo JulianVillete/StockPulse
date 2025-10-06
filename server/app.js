@@ -21,14 +21,15 @@ mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-.then(() => console.log('Connected to MongoDB'))
+.then(() => console.log('✅ Connected to MongoDB'))
 .catch(err => {
-  console.error('MongoDB connection error:', err.message);
+  console.error('❌ MongoDB connection error:', err.message);
   console.log('💡 To fix this:');
   console.log('1. Set up MongoDB Atlas (free): https://www.mongodb.com/atlas');
-  console.log('2. Update MONGODB_URI in server/.env file');
+  console.log('2. Update MONGODB_URI in Render environment variables');
   console.log('3. Or install local MongoDB: https://www.mongodb.com/try/download/community');
   console.log('📝 For now, the app will work without database (watchlist won\'t persist)');
+  console.log('🔄 App will continue running with in-memory storage...');
 });
 
 // Routes
