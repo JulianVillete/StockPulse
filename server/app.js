@@ -72,8 +72,8 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-// Schedule price alert checks every 30 seconds
-cron.schedule('*/30 * * * * *', () => {
-  console.log('Checking price alerts...');
-  // This will be implemented in the watchlist routes
-});
+// Schedule price alert checks every 30 seconds (disabled for debugging)
+// cron.schedule('*/30 * * * * *', () => {
+//   console.log('Checking price alerts...');
+//   // This will be implemented in the watchlist routes
+// });
