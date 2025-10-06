@@ -3,6 +3,7 @@ import SearchBar from '../components/SearchBar';
 import StockCard from '../components/StockCard';
 import StockChart from '../components/StockChart';
 import Watchlist from '../components/Watchlist';
+import API_BASE_URL from '../config/api';
 
 const Dashboard = () => {
   const [selectedStock, setSelectedStock] = useState(null);
@@ -19,14 +20,14 @@ const Dashboard = () => {
     
     try {
       // Fetch stock quote
-      const quoteResponse = await fetch(`/api/stocks/quote/${symbol}`);
+      const quoteResponse = await fetch(`${API_BASE_URL}/api/stocks/quote/${symbol}`);
       if (!quoteResponse.ok) {
         throw new Error('Failed to fetch stock data');
       }
       const quoteData = await quoteResponse.json();
       
       // Fetch daily chart data
-      const chartResponse = await fetch(`/api/stocks/daily/${symbol}`);
+      const chartResponse = await fetch(`${API_BASE_URL}/api/stocks/daily/${symbol}`);
       if (!chartResponse.ok) {
         throw new Error('Failed to fetch chart data');
       }

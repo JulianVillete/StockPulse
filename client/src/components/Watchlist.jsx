@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Trash2, Bell, BellOff, TrendingUp, TrendingDown, Edit3 } from 'lucide-react';
+import API_BASE_URL from '../config/api';
 
 const Watchlist = ({ onStockSelect }) => {
   const [watchlist, setWatchlist] = useState([]);
@@ -13,7 +14,7 @@ const Watchlist = ({ onStockSelect }) => {
 
   const fetchWatchlist = async () => {
     try {
-      const response = await fetch('/api/watchlist');
+      const response = await fetch(`${API_BASE_URL}/api/watchlist`);
       if (response.ok) {
         const data = await response.json();
         setWatchlist(data);
@@ -31,7 +32,7 @@ const Watchlist = ({ onStockSelect }) => {
     }
 
     try {
-      const response = await fetch(`/api/watchlist/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/watchlist/${id}`, {
         method: 'DELETE'
       });
 
@@ -50,7 +51,7 @@ const Watchlist = ({ onStockSelect }) => {
     if (!editPrice) return;
 
     try {
-      const response = await fetch(`/api/watchlist/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/watchlist/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ const Watchlist = ({ onStockSelect }) => {
 
   const handleResetAlert = async (id) => {
     try {
-      const response = await fetch(`/api/watchlist/${id}/reset-alert`, {
+      const response = await fetch(`${API_BASE_URL}/api/watchlist/${id}/reset-alert`, {
         method: 'PATCH'
       });
 

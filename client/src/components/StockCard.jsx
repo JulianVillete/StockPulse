@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TrendingUp, TrendingDown, Plus, Minus, DollarSign, Calendar, BarChart3 } from 'lucide-react';
+import API_BASE_URL from '../config/api';
 
 const StockCard = ({ stockData, onAddToWatchlist }) => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -16,7 +17,7 @@ const StockCard = ({ stockData, onAddToWatchlist }) => {
 
     setAddingToWatchlist(true);
     try {
-      const response = await fetch('/api/watchlist', {
+      const response = await fetch(`${API_BASE_URL}/api/watchlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
