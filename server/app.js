@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const cron = require('node-cron');
+// const cron = require('node-cron'); // Disabled to prevent deployment issues
 
 // Load environment variables
 dotenv.config();
