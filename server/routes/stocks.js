@@ -36,11 +36,14 @@ router.get('/quote/:symbol', async (req, res) => {
   console.log(`📈 Stock quote request for: ${req.params.symbol}`);
   try {
     const { symbol } = req.params;
+    console.log(`🔍 Fetching data for symbol: ${symbol.toUpperCase()}`);
     
     const data = await fetchFromAlphaVantage({
       function: 'GLOBAL_QUOTE',
       symbol: symbol.toUpperCase()
     });
+    
+    console.log(`📊 Alpha Vantage response:`, JSON.stringify(data, null, 2));
 
     if (data['Error Message']) {
       return res.status(400).json({ error: 'Invalid symbol' });
@@ -70,7 +73,9 @@ router.get('/quote/:symbol', async (req, res) => {
 
     res.json(stockData);
   } catch (error) {
-    console.error('Error fetching stock quote:', error);
+    console.error('❌ Error fetching stock quote:', error);
+    console.error('❌ Error details:', error.message);
+    console.error('❌ Error stack:', error.stack);
     res.status(500).json({ error: 'Failed to fetch stock data' });
   }
 });
