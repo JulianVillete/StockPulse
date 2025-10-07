@@ -1,4 +1,4 @@
-# StockPulse MVP
+# StockPulse
 
 A clean, responsive web application for real-time stock market data, price charts, and price alerts.
 
