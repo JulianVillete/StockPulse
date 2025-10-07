@@ -50,7 +50,19 @@ router.get('/quote/:symbol', async (req, res) => {
     }
 
     if (data['Note']) {
-      return res.status(429).json({ error: 'API call frequency exceeded' });
+      return res.status(429).json({ 
+        error: 'API rate limit exceeded', 
+        message: 'Free Alpha Vantage API allows 25 requests per day. Please try again tomorrow or upgrade to premium.',
+        details: data['Note']
+      });
+    }
+
+    if (data['Information'] && data['Information'].includes('rate limit')) {
+      return res.status(429).json({ 
+        error: 'API rate limit exceeded', 
+        message: 'Free Alpha Vantage API allows 25 requests per day. Please try again tomorrow or upgrade to premium.',
+        details: data['Information']
+      });
     }
 
     const quote = data['Global Quote'];

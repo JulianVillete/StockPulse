@@ -22,6 +22,10 @@ const Dashboard = () => {
       // Fetch stock quote
       const quoteResponse = await fetch(`${API_BASE_URL}/api/stocks/quote/${symbol}`);
       if (!quoteResponse.ok) {
+        const errorData = await quoteResponse.json();
+        if (errorData.error === 'API rate limit exceeded') {
+          throw new Error(`Rate limit exceeded: ${errorData.message}`);
+        }
         throw new Error('Failed to fetch stock data');
       }
       const quoteData = await quoteResponse.json();
